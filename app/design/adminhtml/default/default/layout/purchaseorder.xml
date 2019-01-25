@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	 <default>
+	<reference name="head">
+	<action method="addJs"><script>prototype/window.js</script></action>
+    <action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
+    <action method="addCss"><name>lib/prototype/windows/themes/magento.css</name></action>
+    </reference>
+     </default>
+  <purchaseorder_adminhtml_purchaseorderbackend_index>
+	<reference name="content">
+	  <block type="purchaseorder/adminhtml_purchaseorderbackend" name="purchaseorderbackend" template="purchaseorder/purchaseorderbackend.phtml"/>
+	</reference>
+	<remove name="header"/>
+	<remove name="footer"/>
+  </purchaseorder_adminhtml_purchaseorderbackend_index>
+  <purchaseorder_adminhtml_purchaseordervendor_index>
+	<reference name="content">
+	  <block type="purchaseorder/adminhtml_purchaseordervendor" name="purchaseordervendor" />
+	</reference>
+  </purchaseorder_adminhtml_purchaseordervendor_index>
+  <purchaseorder_adminhtml_purchaseorderstatus_index>
+	<reference name="content">
+	  <block type="purchaseorder/adminhtml_purchaseorderstatus" name="purchaseorderstatus" />
+	</reference>
+  </purchaseorder_adminhtml_purchaseorderstatus_index>
+  <purchaseorder_adminhtml_purchaseorders_index>
+	<reference name="content">
+	  <block type="purchaseorder/adminhtml_purchaseorders" name="purchaseorders" />
+	</reference>
+  </purchaseorder_adminhtml_purchaseorders_index>
+  <adminhtml_sales_order_view>
+		<reference name="order_items">
+            <action method="setTemplate"><template>purchaseorder/sales/order/view/items.phtml</template></action>
+			<action method="addItemRender"><type>default</type><block>adminhtml/sales_order_view_items_renderer_default</block><template>purchaseorder/sales/order/view/items/renderer/default.phtml</template></action>
+        </reference>
+  </adminhtml_sales_order_view>
+</layout>

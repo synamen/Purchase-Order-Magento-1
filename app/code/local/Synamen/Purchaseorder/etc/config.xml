@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Synamen_Purchaseorder>
+      <version>2.0.0</version>
+    </Synamen_Purchaseorder>
+  </modules>
+  <frontend>
+    <routers>
+      <purchaseorder>
+        <use>standard</use>
+          <args>
+            <module>Synamen_Purchaseorder</module>
+            <frontName>purchaseorder</frontName>
+          </args>
+      </purchaseorder>
+    </routers>
+		<layout>
+		  <updates>
+			<purchaseorder>
+			  <file>purchaseorder.xml</file>
+			</purchaseorder>
+		  </updates>
+		</layout>
+  </frontend>
+  <global>
+    <helpers>
+      <purchaseorder>
+        <class>Synamen_Purchaseorder_Helper</class>
+      </purchaseorder>
+    </helpers>
+	<blocks>
+	  <purchaseorder>
+		<class>Synamen_Purchaseorder_Block</class>
+	  </purchaseorder>
+		<adminhtml>
+			<rewrite>
+				<sales_order_view_info>Synamen_Purchaseorder_Block_Sales_Order_View_Info</sales_order_view_info>
+			</rewrite>
+		</adminhtml>
+	</blocks>
+	<models>
+	  <purchaseorder>
+		<class>Synamen_Purchaseorder_Model</class>
+		<resourceModel>purchaseorder_mysql4</resourceModel>
+	  </purchaseorder>
+	  <purchaseorder_mysql4>
+		<class>Synamen_Purchaseorder_Model_Mysql4</class>
+		<entities>		  
+			  <purchaseordervendor>
+				<table>synamen_purchase_order_vendor</table>
+			  </purchaseordervendor>		  
+			  <purchaseorderstatus>
+				<table>synamen_purchase_order_statuses</table>
+			  </purchaseorderstatus>		  
+			  <purchaseorders>
+				<table>synamen_purchase_orders</table>
+			  </purchaseorders>
+        </entities>
+	  </purchaseorder_mysql4>
+	</models>
+	<resources>
+	  <purchaseorder_setup>
+		<setup>
+		  <module>Synamen_Purchaseorder</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </purchaseorder_setup>
+	  <purchaseorder_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </purchaseorder_write>
+	  <purchaseorder_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </purchaseorder_read>
+	</resources>
+  </global>
+  <admin>
+	<routers>
+	  <purchaseorder>
+	    <use>admin</use>
+		<args>
+		  <module>Synamen_Purchaseorder</module>
+		  <frontName>admin_purchaseorder</frontName>
+		</args>
+	  </purchaseorder>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <synamen module="purchaseorder">
+		<title>Synamen</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <!--
+		  <purchaseorderbackend module="purchaseorder">
+			<title>Purchaseorder</title>
+			<sort_order>0</sort_order>
+			<action>admin_purchaseorder/adminhtml_purchaseorderbackend</action>
+		  </purchaseorderbackend>
+		  -->
+		  <purchaseorder module="purchaseorder">
+			<title>Purchase Order</title>
+			<sort_order>100</sort_order>
+			<children>
+				  <purchaseordervendor module="purchaseorder">
+					<title>Manage Vendors</title>
+					<sort_order>0</sort_order>
+					<action>admin_purchaseorder/adminhtml_purchaseordervendor</action>
+				  </purchaseordervendor>
+				  <purchaseorderstatus module="purchaseorder">
+					<title>Manage Status</title>
+					<sort_order>10</sort_order>
+					<action>admin_purchaseorder/adminhtml_purchaseorderstatus</action>
+				  </purchaseorderstatus>
+				  <purchaseorders module="purchaseorder">
+					<title>Manage Orders</title>
+					<sort_order>20</sort_order>
+					<action>admin_purchaseorder/adminhtml_purchaseorders</action>
+				  </purchaseorders>
+			</children>
+		  </purchaseorder>
+		</children>
+	  </synamen>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+			<children>
+				<synamen module="purchaseorder">
+					<title>Synamen</title>
+					<sort_order>1000</sort_order>
+					<children>
+						<purchaseorder translate="title">
+							<title>Purchaseorder</title>
+							<sort_order>0</sort_order>
+							<children>
+								<purchaseordervendor translate="title">
+									<title>Manage Purchaseordervendor</title>
+									<sort_order>0</sort_order>
+								</purchaseordervendor>
+								<purchaseorderstatus translate="title">
+									<title>Manage Purchaseorderstatus</title>
+									<sort_order>10</sort_order>
+								</purchaseorderstatus>
+								<purchaseorders translate="title">
+									<title>Manage Purchaseorders</title>
+									<sort_order>20</sort_order>
+								</purchaseorders>
+							</children>
+						</purchaseorder>
+					</children>
+				</synamen>
+			</children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<purchaseorder>
+		  <file>purchaseorder.xml</file>
+		</purchaseorder>
+	  </updates>
+	</layout>
+  </adminhtml>
+  <default>
+	<purchaseorder>
+	  <settings>
+		<default_status>1</default_status>
+	  </settings>
+	</purchaseorder>
+  </default>
+</config> 
